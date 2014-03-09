@@ -42,7 +42,7 @@ class Adapter
             $table = new Table($tableName);
 
             foreach ($fields as $f) {
-                $field = new Db\Table\Field();
+                $field = new Table\Field();
                 $field->setName($f['Field'])
                         ->setType($f['Type'])
                         ->setIsNullable($f['Null'])
