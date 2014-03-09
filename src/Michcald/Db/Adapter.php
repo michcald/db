@@ -32,14 +32,14 @@ class Adapter
             $this->db = new PDO($dsn, $this->username, $password);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
-        catch (PDOException $e) {
-            throw new Exception('DB Connection failed');
+        catch (\PDOException $e) {
+            throw new \Exception('DB Connection failed');
         }
 
         foreach ($this->listTables() as $tableName) {
             $fields = $this->fetchAll('SHOW COLUMNS FROM ' . $tableName);
 
-            $table = new Db\Table($tableName);
+            $table = new Table($tableName);
 
             foreach ($fields as $f) {
                 $field = new Db\Table\Field();
@@ -282,7 +282,7 @@ class Adapter
 
         try {
             return $this->query($create);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $create . '<br>' . $e->getMessage();
             die();
         }
